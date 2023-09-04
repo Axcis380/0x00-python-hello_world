@@ -12,6 +12,13 @@ if [ ! -f "$PYFILE" ]; then
     exit 1
 fi
 
+# Check code style using pycodestyle
+pycodestyle "$PYFILE"
+if [ $? -ne 0 ]; then
+    echo "Error: Code style check failed. Please fix the code style issues."
+    exit 1
+fi
+
 # Run the Python script
 python3 "$PYFILE"
 
